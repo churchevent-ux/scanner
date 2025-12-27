@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { setCred } from "../module/firebase";
 import { appTitle } from "../App";
+import axios from "axios";
 
 export default function HomePage({ setPath }: any) {
   const [password, setPassword] = useState("");
@@ -19,16 +20,12 @@ export default function HomePage({ setPath }: any) {
 
     setbusy(true);
     try {
-      const res = await fetch("https://scanner-api-azure.vercel.app/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
+      let res = await axios.post("https://scanner-api-azure.vercel.app/login", {
+        password,
       });
 
-      const data = await res.json();
-
-      if (data) {
-        const stringRes = JSON.stringify(data);
+      if (res.data) {
+        const stringRes = JSON.stringify(res.data);
         sessionStorage.setItem("cred", stringRes);
         setCred(setPath);
       } else {
