@@ -32,7 +32,7 @@ export default function StoreOutPage({ setPath }: any) {
           checkUpdatedAt: new Date(),
         });
         if (updated) {
-          showToast("Store In succes");
+          showToast("Store Out succes");
           sendPaymentEmail(
             user.participantName,
             user.email,
