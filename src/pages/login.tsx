@@ -19,7 +19,7 @@ export default function HomePage({ setPath }: any) {
 
     setbusy(true);
     try {
-      const res = await fetch("https://sag-scanner-api.vercel.app/login", {
+      const res = await fetch("https://scanner-api-azure.vercel.app/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
