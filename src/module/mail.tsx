@@ -11,7 +11,7 @@ const PUBLIC_KEY = "9tsvXvMFPmJw8Mkks";
 
 export function sendPaymentEmail(
   name: string,
-  to_email: string,
+  email: string,
   tempId: string
 ) {
   emailjs.init(PUBLIC_KEY);
@@ -19,7 +19,7 @@ export function sendPaymentEmail(
     return emailjs.send(
       SERVICE_ID,
       tempId,
-      { to_email, name, time: new Date().toString() },
+      { email, name, time: new Date().toString() },
       PUBLIC_KEY
     );
   } catch (error) {}
