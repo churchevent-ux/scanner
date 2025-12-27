@@ -10,8 +10,8 @@ export default function HomePage({ setPath }: any) {
   const handleLogin = async (e: any) => {
     e.preventDefault();
     if (busy) return;
-    if (password.length < 4) {
-      setError("Password must be at least 8 characters long");
+    if (password.length < 3) {
+      setError("Password must be at least 3 characters long");
       return;
     }
 
