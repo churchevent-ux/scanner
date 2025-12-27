@@ -16,11 +16,11 @@ export function sendPaymentEmail(
 ) {
   emailjs.init(PUBLIC_KEY);
   try {
-    return emailjs.send(
-      SERVICE_ID,
-      tempId,
-      { to_email, name, time: new Date().toString() },
-      PUBLIC_KEY
-    );
+    // return emailjs.send(
+    //   SERVICE_ID,
+    //   tempId,
+    //   { to_email, name, time: new Date().toString() },
+    //   PUBLIC_KEY
+    // );
   } catch (error) {}
 }

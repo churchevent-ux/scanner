@@ -23,7 +23,7 @@ export default function StoreOutPage({ setPath }: any) {
       if (!user) {
         showErrorToast("User not found");
       } else if (user?.checkInStatus !== "Entered") {
-        showWarningToast("User not signedIn");
+        showWarningToast("User not signed In");
       } else if (user?.storeStatus !== "Stored") {
         showWarningToast("User has nothing in the store");
       } else {

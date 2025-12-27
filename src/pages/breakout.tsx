@@ -23,7 +23,7 @@ export default function BreakOutPage({ setPath }: any) {
       if (!user) {
         showErrorToast("User not found");
       } else if (user?.checkInStatus !== "Entered") {
-        showWarningToast("User Is not SinedIn");
+        showWarningToast("User Is not Sined In");
       } else {
         const updated = await updateOneUsers(value, {
           checkInStatus: "OnBreak",
@@ -62,7 +62,7 @@ export default function BreakOutPage({ setPath }: any) {
 
           <div className="text-left">
             <h1 className="text-lg lg:text-2xl font-semibold text-gray-800">
-              Mark Break with QR or ID
+              Break Out with QR or ID
             </h1>
             <p className="mt-1 text-xs lg:text-sm text-gray-500">
               Scan a QR code or type your ID to sign out quickly and securely.

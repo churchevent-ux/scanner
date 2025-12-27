@@ -36,7 +36,7 @@ export default function BreakInPage({ setPath }: any) {
       let user = await getOneUsers(value);
       if (!user) {
         showErrorToast("User not found");
-      } else if (user?.checkInStatus === "OnBreak") {
+      } else if (user?.checkInStatus !== "OnBreak") {
         showWarningToast("User not On Break");
       } else {
         const updated = await updateOneUsers(value, {
@@ -81,7 +81,7 @@ export default function BreakInPage({ setPath }: any) {
 
           <div className="text-left">
             <h1 className="text-lg lg:text-2xl font-semibold text-gray-800 text-[#2FA334]">
-              Sign in with QR or ID{" "}
+              Break in with QR or ID{" "}
               <span className="text-[#2780F5]">({total})</span>
             </h1>
             <p className="mt-1 text-xs lg:text-sm text-gray-500">
