@@ -1,6 +1,6 @@
 export function UserList({ users, onSelect }: any) {
   return (
-    <div className="mt-6 bg-white shadow-lg rounded-xl w-full max-w-4xl overflow-hidden max-h-[calc(100vh-400px)]">
+    <div className="mt-6 bg-white shadow-lg rounded-xl w-full max-w-4xl overflow-hidden">
       <table className="w-full text-sm lg:text-base">
         <thead className="bg-gray-200 text-gray-700">
           <tr>
