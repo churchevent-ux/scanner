@@ -42,7 +42,7 @@ export default function StoreInPage({ setPath }: any) {
       } else {
         const updated = await updateOneUsers(value, {
           storeStatus: "Stored",
-          checkUpdatedAt: new Date(),
+          storeInUpdatedAt: new Date(),
         });
         if (updated) {
           loadData(1);

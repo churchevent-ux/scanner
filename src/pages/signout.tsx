@@ -47,7 +47,7 @@ export default function SignOutPage({ setPath }: any) {
       } else {
         const updated = await updateOneUsers(value, {
           checkInStatus: "Exited",
-          checkUpdatedAt: new Date(),
+          signOutUpdatedAt: new Date(),
         });
         if (updated) {
           showToast("Sign Out succes");

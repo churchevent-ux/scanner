@@ -42,7 +42,7 @@ export default function SignInPage({ setPath }: any) {
       } else {
         const updated = await updateOneUsers(value, {
           checkInStatus: "Entered",
-          checkUpdatedAt: new Date(),
+          signInUpdatedAt: new Date(),
         });
 
         if (updated) {

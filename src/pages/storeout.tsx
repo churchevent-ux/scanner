@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { getOneUsers, updateOneUsers } from "../module/db";
+import { useEffect, useState } from "react";
+import { getAllUsersStored, getOneUsers, updateOneUsers } from "../module/db";
 import QrScanner from "../module/reader";
 import { showErrorToast, showToast, showWarningToast } from "../module/toast";
 import { sendPaymentEmail } from "../module/mail";
@@ -8,6 +8,19 @@ export default function StoreOutPage({ setPath }: any) {
   const [busy, setbusy] = useState(false);
   const [isScan, setisScan] = useState(false);
   const [userId, setuserId] = useState("");
+  const [total, settotal]: any[] = useState(0);
+  
+    useEffect(() => {
+      loadData(1);
+    }, []);
+  
+    const loadData = async (_page: number) => {
+      // setpage(_page);
+      let res: any = await getAllUsersStored(_page);
+      // setusers(res.data || []);
+      settotal(res.total || 0);
+      setbusy(false);
+    };
 
   const onClickScan = async () => {
     setisScan(true);
@@ -29,7 +42,7 @@ export default function StoreOutPage({ setPath }: any) {
       } else {
         const updated = await updateOneUsers(value, {
           storeStatus: "Empty",
-          checkUpdatedAt: new Date(),
+          storeOutUpdatedAt: new Date(),
         });
         if (updated) {
           showToast("Store Out succes");
@@ -70,7 +83,8 @@ export default function StoreOutPage({ setPath }: any) {
 
           <div className="text-left">
             <h1 className="text-lg lg:text-2xl font-semibold text-gray-800">
-              Store Out with QR or ID
+              Store Out with QR or ID{" "}
+              <span className="text-[#2780F5]">({total})</span>
             </h1>
             <p className="mt-1 text-xs lg:text-sm text-gray-500">
               Scan a QR code or type your ID to store gadgets quickly and

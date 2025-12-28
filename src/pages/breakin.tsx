@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllUsersSignedIn, getOneUsers, updateOneUsers } from "../module/db";
+import { getAllUsersOnBreak, getOneUsers, updateOneUsers } from "../module/db";
 import QrScanner from "../module/reader";
 import { showErrorToast, showToast, showWarningToast } from "../module/toast";
 
@@ -18,7 +18,7 @@ export default function BreakInPage({ setPath }: any) {
 
   const loadData = async (_page: number) => {
     // setpage(_page);
-    let res: any = await getAllUsersSignedIn(_page);
+    let res: any = await getAllUsersOnBreak(_page);
     // setusers(res.data || []);
     settotal(res.total || 0);
     setbusy(false);
@@ -41,12 +41,11 @@ export default function BreakInPage({ setPath }: any) {
       } else {
         const updated = await updateOneUsers(value, {
           checkInStatus: "Entered",
-          checkUpdatedAt: new Date(),
+          breakInUpdatedAt: new Date(),
         });
 
         if (updated) {
           showToast("Break In succes");
-          loadData(1);
         } else showErrorToast("Failed On Sign In");
       }
       setuserId("");

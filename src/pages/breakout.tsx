@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { getOneUsers, updateOneUsers } from "../module/db";
+import { useEffect, useState } from "react";
+import { getAllUsersOnBreak, getOneUsers, updateOneUsers } from "../module/db";
 import QrScanner from "../module/reader";
 import { showErrorToast, showToast, showWarningToast } from "../module/toast";
 
@@ -7,6 +7,22 @@ export default function BreakOutPage({ setPath }: any) {
   const [busy, setbusy] = useState(false);
   const [isScan, setisScan] = useState(false);
   const [userId, setuserId] = useState("");
+  // const [users, setusers]: any[] = useState([]);
+  // const [user, setuser]: any[] = useState(null);
+  const [total, settotal]: any[] = useState(0);
+  // const [page, setpage]: any[] = useState(1);
+
+  useEffect(() => {
+    loadData(1);
+  }, []);
+
+  const loadData = async (_page: number) => {
+    // setpage(_page);
+    let res: any = await getAllUsersOnBreak(_page);
+    // setusers(res.data || []);
+    settotal(res.total || 0);
+    setbusy(false);
+  };
 
   const onClickScan = async () => {
     setisScan(true);
@@ -27,7 +43,7 @@ export default function BreakOutPage({ setPath }: any) {
       } else {
         const updated = await updateOneUsers(value, {
           checkInStatus: "OnBreak",
-          checkUpdatedAt: new Date(),
+          breakOutUpdatedAt: new Date(),
         });
         if (updated) showToast("User Status changed to Break");
         else showErrorToast("Failed On Break");
@@ -62,7 +78,8 @@ export default function BreakOutPage({ setPath }: any) {
 
           <div className="text-left">
             <h1 className="text-lg lg:text-2xl font-semibold text-gray-800">
-              Break Out with QR or ID
+              Break Out with QR or ID{" "}
+              <span className="text-[#2780F5]">({total})</span>
             </h1>
             <p className="mt-1 text-xs lg:text-sm text-gray-500">
               Scan a QR code or type your ID to sign out quickly and securely.
