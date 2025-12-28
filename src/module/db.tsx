@@ -152,6 +152,23 @@ export async function getAllUsersStored(_page: number): Promise<any> {
   }
 }
 
+export async function getAllUsersStoredOut(_page: number): Promise<any> {
+  try {
+    const coll = collection(db, collectionName);
+    const q1 = query(coll, where("storeStatus", "==", "Empty"));
+
+    const snapshot = await getCountFromServer(q1);
+    const total = snapshot.data().count;
+
+    const data: any = [];
+    return { total, data };
+  } catch (error) {
+    console.log(error);
+    showErrorToast("Error on loading users");
+    return { total: 0, data: [] };
+  }
+}
+
 export async function getAllUsersOnBreak(_page: number): Promise<any> {
   try {
     const coll = collection(db, collectionName);

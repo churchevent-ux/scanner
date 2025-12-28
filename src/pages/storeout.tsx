@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { getAllUsersStored, getOneUsers, updateOneUsers } from "../module/db";
+import {
+  getAllUsersStoredOut,
+  getOneUsers,
+  updateOneUsers,
+} from "../module/db";
 import QrScanner from "../module/reader";
 import { showErrorToast, showToast, showWarningToast } from "../module/toast";
 import { sendPaymentEmail } from "../module/mail";
@@ -9,18 +13,18 @@ export default function StoreOutPage({ setPath }: any) {
   const [isScan, setisScan] = useState(false);
   const [userId, setuserId] = useState("");
   const [total, settotal]: any[] = useState(0);
-  
-    useEffect(() => {
-      loadData(1);
-    }, []);
-  
-    const loadData = async (_page: number) => {
-      // setpage(_page);
-      let res: any = await getAllUsersStored(_page);
-      // setusers(res.data || []);
-      settotal(res.total || 0);
-      setbusy(false);
-    };
+
+  useEffect(() => {
+    loadData(1);
+  }, []);
+
+  const loadData = async (_page: number) => {
+    // setpage(_page);
+    let res: any = await getAllUsersStoredOut(_page);
+    // setusers(res.data || []);
+    settotal(res.total || 0);
+    setbusy(false);
+  };
 
   const onClickScan = async () => {
     setisScan(true);
