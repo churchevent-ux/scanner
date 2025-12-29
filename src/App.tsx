@@ -10,7 +10,7 @@ import { setCred } from "./module/firebase";
 import BreakOutPage from "./pages/breakout";
 import BreakInPage from "./pages/breakin";
 
-export const appTitle = "CHARIS Scanner (v1.1.0)";
+export const appTitle = "CHARIS Scanner (v1.2.0)";
 
 export default function App() {
   const [path, setpath] = useState("login");

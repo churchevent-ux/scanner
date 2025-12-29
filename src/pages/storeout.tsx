@@ -49,6 +49,7 @@ export default function StoreOutPage({ setPath }: any) {
           storeOutUpdatedAt: new Date(),
         });
         if (updated) {
+          loadData(1);
           showToast("Store Out succes");
           sendPaymentEmail(
             user.participantName,

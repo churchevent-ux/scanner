@@ -45,8 +45,10 @@ export default function BreakOutPage({ setPath }: any) {
           checkInStatus: "OnBreak",
           breakOutUpdatedAt: new Date(),
         });
-        if (updated) showToast("User Status changed to Break");
-        else showErrorToast("Failed On Break");
+        if (updated) {
+          loadData(1);
+          showToast("User Status changed to Break");
+        } else showErrorToast("Failed On Break");
       }
       setuserId("");
     }

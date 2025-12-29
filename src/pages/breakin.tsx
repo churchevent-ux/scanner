@@ -45,6 +45,7 @@ export default function BreakInPage({ setPath }: any) {
         });
 
         if (updated) {
+          loadData(1);
           showToast("Break In succes");
         } else showErrorToast("Failed On Sign In");
       }
