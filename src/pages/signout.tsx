@@ -40,7 +40,7 @@ export default function SignOutPage({ setPath }: any) {
       let user = await getOneUsers(value);
       if (!user) {
         showErrorToast("User not found");
-      } else if (user?.checkInStatus !== "Exited") {
+      } else if (user?.checkInStatus === "Exited") {
         showWarningToast("User already signed out");
       } else if (user?.checkInStatus !== "Entered") {
         showWarningToast("User Is not SinedIn");
